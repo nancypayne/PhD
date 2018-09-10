@@ -1,0 +1,19 @@
+- create/choose folder
+- in terminal: go to folder
+- initialise Git repo
+> git init
+- tell Git where the remote repo is (i.e., on the internet) (if remote repo doesn't exist, you need to create it)
+- copy paste:
+> git remote add origin git@github.com:nancypayne/repo_name.git
+- if you want to change stuff... change it (e.g., update file)
+- to update to origin,
+> git add --all
+> git commit -m "message here"
+> git push --set-upstream origin master (first time)
+> git push origin (every other time)
+
+- choose folder on (e.g.) work comp
+> in terminal, go to folder
+> git init
+> git remote add origin git@github.com:nancypayne/repo_name.git
+> git pull origin master
