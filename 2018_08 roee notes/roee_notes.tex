@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{Types of qubit}
+
+Ions with a single electron in outer (valence) shell have a relatively simple level structure, so suitable. ``Singly ionised `alkali-like' ions" are the only ones currently used for QIP (Roee 2011).
+
+Ground electronic state of valence electron: $^2 S_{1/2}$, where $S$ is the zero angular momentum orbital. The electron can be optically excited to the $P$ orbital via an electric dipole transition. 
+
+Spin-orbit coupling $\rightarrow$ fine structure: \newline e.g., $P$ orbital splits to $P_{1/2}, P_{3/2}$. 
+
+Odd isotopes or isotopes with non-zero nuclear spin $\rightarrow$ hyperfine structure: \newline e.g., $S_{1/2} \rightarrow S_{1/2}|F=0>, S_{1/2}|F=1>$.
+
+(Small) magnetic field $\rightarrow$ Zeeman sub-levels: \newline e.g., $S_{1/2}|F=1> \rightarrow S_{1/2}|F=1, m_F = -1, 0, 1>$.
+
+\textbf{Hierarchy of fine, hf, Zeeman structure? I.e., magnitudes for different atoms?}
+
+Qubits are best encoded in a pair of levels that are very resilient/stable regarding decay and decoherence. Levels in the $P$ manifold have typical lifetimes of a few nS, so the usual choice is two $S_{1/2}$ states or an $S$ and $D$ superposition. Encoding a qubit in a pair of $S_{1/2}$ levels will have practically
+
+\textbf{What makes a qubit resilient to decoherence? If lifetime is essentially infinite (e.g., S1/2 level), what different choices can be made vs decoherence...?}
+
+\textbf{What does a qubit made up of an S and D superposition look like?}
+
+
+\subsection{Zeeman qubit}
+
+E.g., Yb 174 (I = 0). In a magnetic field the $S_{1/2}$ level is split into two states, corresponding to the electron spin pointing parallel and anti-parallel to the external magnetic field. The energy splitting between the two Zeeman levels is: \newline $g_s \mu_B B \approx 2 \cdot 10^{-23} \cdot B\approx 28$ MHz/mT.
+
+Advantage of the Zeeman qubit discussed above: the Zeeman levels are the only two levels in the manifold, so ``optical pumping out of the qubit manifold does not occur". 
+
+\textbf{Wait, what's optical pumping defined as? Why doesn't it affect us in this case?}
+
+Disadvantages: energy difference betweens on magnetic field magnitude, which will be noisy and will result in dephasing. Also, if B field is small, the difference between the two Zeeman levels can be smaller than the $P$ level natural spectral width, so you can't do state selective fluorescence (if you shine a laser on either 0 or 1, both will be happily excited to $P$).
+
+\textbf{What does dephasing specifically mean here...? Dephasing of what? Linked to coherence?}
+
+
+\subsection{Hyperfine qubit}
+
+Odd isotopes or when nuclear spin $I \neq 0$, the $S_{1/2}$ level is split into two hyperfine manifolds, $F = I \pm 1/2$. So for Yb 171, we end up with $S_{1/2}|F=0>$ and $S_{1/2}|F=1>$.  The hyperfine splitting (i.e., between F=0 and F=1) depends on the ground state hyperfine constant $A_{hf}$ and for the ions we care about, the splitting is in the few GHz range. 
+
+If you apply a magnetic field, you remove the degeneracy of the Zeeman states in each hyperfine manifold, splitting them into $m_F$ states, where $m_F = -F, ..., F$. The Zeeman shift for small fields is $g_F \mu_B B m_F$ and can be calculated analytically using the Breit-Rabi formula.
+
+Advantages of hyperfine qubit: you can choose a pair of levels such that their separation doesn't depend (to first order) on the magnetic field. E.g., the $S_{1/2}|F=0, m_F=0>$ and $S_{1/2}|F=1, m_F=0>$ levels in Yb 171. These are referred to as ``clock transition@ states.
+
+
+\subsection{Optical qubit}
+
+If your ion has a low-lying $D$ level, you could encode a qubit into levels connected by the $S \rightarrow D$ optical transition. The $D$ lifetimes are typically on the order of a second, so the fundamental limit to the optical qubit coherence time is long relative to typical operation time.
+
+However, in contrast to Zeeman and hyperfine qubits (where the ``local oscillator"---the qubit energy splitting?---is in the rf or microwave range), optical qubits' local oscillator is in the optical range, i.e., a laser. Therefore the qubit coherence time is limited by the laser's finite linewidth***. \textbf{(Why?)} To get a good enough laser linewidth, e.g., comparable to the $D$ natural spectral width (about 1 Hz) requires laser frequency stability on the order of $10^{-14}$, which is non-trivial (ha. What's one of our laser's stability, out of curiosity?). This makes optical qubits less common.
+
+\textbf{*** Why? How to think about this mechanically...? How does this affect coherence?}
+
+For ions with $I \neq 0$, you'll get hyperfine splitting in both $S$ and $D$. The $P_{1/2}$ can't decay to $D_{5/2}$, so if you encode an optical qubit on the $S_{1/2} \rightarrow D_{5/2}$ transition, you can use state-selective fluorescence (an ion in $D$ won't scatter light).
+
+
+\subsection*{Initialisation and detection}
+
+Initialised using optical pumping, and detected usually using state-selective fluorescence: photons are state-selectively scattered if they are resonant with a transition connecting only one of the qubit states to a short lived state.
+
+For Zeeman qubits (where the Zeeman splitting/B field is usually small compared to the P natural width) you first need to shelve one of the qubit states onto a ``spectrally distant meta-stable state" (e.g., one of the $D_{5/2}$ states), and then detect fluorescence.
+
+
+\section{Single-qubit gates}
+
+(Write out this section at home on pen and paper to get the proper hang of it?)
+
+A single-ion qubit gate rotates the state vector(?) on the Bloch sphere.
+
+The qubit levels are coupled by electromagentic radiation (e.g., laser light).
+
+Three different cases:
+
+\begin{itemize}
+\item \textbf{Carrier transition:} the two qubit levels are coupled without changing the harmonic oscillator motional state.
+\item \textbf{Red sideband transition:} when the ion qubit spin state is raised... a single h.o. quantum of motion is annihilated. (The interaction Hamiltonian for this is identical to the Jaynes-Cummings Hamiltonian.)
+\item \textbf{Blue sideband transition:} when the ion qubit spin state is raised, a single h.o. quantum of motion is created. 
+\end{itemize}
+
+The RSB and BSD transitions both entangle the qubit's spin with the qubit's motional state.
+
+\textbf{Lamb-Dicke regime:} when the deviation of the ion from its average position is much smaller than the radiation wavelength, or $\eta \sqrt{< ( \hat{a}^{\dagger} + \hat{a} )^2 >}$, ...the Rabi frequencies (the rate at which the qubit wavefunction cycles between the two qubit states) can be approximated simply, and they depend on $\eta$ and $n$, where $\eta = k x_0$ is the Lamb-Dicke parameter, where $k$ is the projection of \textbf{k} along the trap direction, and $x_0$ is the h.o. ground state width, and $n = 0,1, 2, ...$ describes the harmonic oscillator levels. 
+
+\textbf{Which is biggest and how much typically do they vary by? 1\%, 10\%?}
+
+The dependence of the Rabi frequencies on $\eta$ and $n$ can be understood by considering the effect of photon recoil on the overlap between different harmonic oscillator wavefunctions. (See examples...)
+
+If you want to avoid entanglement of the qubit spin to the motion, you need to use on-resonance carrier transitions (i.e., not RSB or BSB transitions).
+
+Now Roee's going to tell me about three different single-qubit gate coupling implementations, for the different ion qubit types.
+
+
+\subsection{Magnetic dipole coupling}
+
+
+\subsection{Two-photon Raman coupling}
+
+
+\subsection{Optical quadrupole coupling}
+
+
+
+
+\section{Two-qubit gates}
+
+
+
+\end{document}
