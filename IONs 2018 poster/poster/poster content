@@ -1,0 +1,23 @@
+IONS poster content
+
+% -------------- Abstract --------------------------------- % 
+
+Precise preparation, manipulation and detection of ion qubit states is crucial in quantum computing and quantum simulation. In this work we trap and cool a cloud of Ytterbium 171 ions in a linear Paul trap, using a combination of dynamic and static electric fields to confine the ions. Even after cooling, an ion will exhibit additional motion ("excess micromotion") if it does not sit at the centre of the ion trap. This motion can be minimised by monitoring the ion's fluorescence while applying appropriate static electric fields.
+
+Once sufficiently cooled and controlled, our ions can go quantum: the state of the ion is both prepared and detected using lasers of appropriate power and wavelength. In this experiment state manipulation was achieved with the application of microwaves to drive Rabi oscillations; the microwave field drives the ions between their two qubit states, which are directly analogous to the values 0 and 1 in classical computing. Further work will be to demonstrate entanglement, with the end goal of applying such techniques to weak measurements (i.e., measurements that disturb the state of a quantum system very little) and measuring two-time correlation functions. 
+
+
+% ------------ micromotion ------------------- %
+
+
+What is micromotion and why is it a problem?
+An ion feels zero force at the centre of the trap (Figure X). Everywhere else the forces are non-zero, resulting in motion if the ion leaves the centre. However, we need our ions as motionless (i.e., as cold) as possible.
+
+How do we observe and remove micromotion?
+An ion oscillating in space will have an oscillating scattering efficiency (see Figure X) due to its motion and the resulting Doppler shift. We can use static electric fields to push the ion closer to the trap centre, reducing the force the ion feels (and thus the ion’s velocity), which in turn reduces the amplitude of the scattering efficiency modulation.
+
+
+
+If we push the ion too far (i.e., across the trap centre and onto the other side), the phase of the fluorescence modulation will flip (see Figure X).
+
+
