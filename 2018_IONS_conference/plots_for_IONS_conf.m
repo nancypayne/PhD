@@ -46,7 +46,7 @@ time2_ns = time2_ns(x1:x2);
 data1 = data1(x1:x2);
 data2 = data2(x1:x2);
 
-line1 = linspace(500,700,100)
+line1 = linspace(500,700,100);
 L = 100;
 
 figure(2), clf, hold on
@@ -75,9 +75,9 @@ data_R = [363,359,389,415,445,512,518,584,660,708,795,851,887,848,930,922,985,96
 figure(3), clf, hold on
 plot(time_R, data_R, 'LineWidth', 3)
 plot(linspace(0, time_R(end), 100), 100*ones(1,100), 'k--')% 'Color', [0.4, 0.4, 0.4])
-xlabel('Time /us', 'FontSize', 20)
-ylabel('Photon count \propto probability of finding ion in |1>', 'FontSize', 20)
-set(gca,'YTickLabel',[]);
+xlabel('Microwave pulse duration /us', 'FontSize', 20)
+ylabel('Ion fluorescence (photon count)', 'FontSize', 20)
+% set(gca,'YTickLabel',[]);
 set(gca, 'FontSize', 15);
 xlim([time_R(1), time_R(end)])
 ylim([0, max(data_R)+150])
