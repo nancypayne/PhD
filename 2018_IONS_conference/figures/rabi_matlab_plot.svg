@@ -15,8 +15,8 @@
    sodipodi:docname="rabi_matlab_plot.svg"
    inkscape:version="0.92.1 r15371"
    inkscape:export-filename="C:\Users\19727887\Desktop\Nancy\PhD\Github\PhD\2018_IONS_conference\figures\rabi_matlab_plot.png"
-   inkscape:export-xdpi="396.89999"
-   inkscape:export-ydpi="396.89999">
+   inkscape:export-xdpi="801.90002"
+   inkscape:export-ydpi="801.90002">
   <metadata
      id="metadata4799">
     <rdf:RDF>
@@ -45,8 +45,8 @@
      showguides="true"
      inkscape:snap-global="true"
      inkscape:zoom="1.021256"
-     inkscape:cx="705.01419"
-     inkscape:cy="430.74245"
+     inkscape:cx="545.8964"
+     inkscape:cy="234.90517"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -572,7 +572,7 @@
          dx="0"
          dy="0"
          style="font-style:normal;font-variant:normal;font-weight:400;font-size:29.3125px;font-family:Arial;fill:#262626"
-         id="tspan4669">Microwave pulse duration /µs</tspan></tspan></text>
+         id="tspan4669">Microwave pulse duration (µs)</tspan></tspan></text>
   <path
      style="fill:none;stroke:#262626;stroke-width:0.91637796px;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="M 183.94205,663.11874 V 39.315276"
