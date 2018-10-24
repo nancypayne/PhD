@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{booktabs} % ................................. for pretty table
+\usepackage[a4paper, total={6in, 8in}]{geometry} % ...... for margins
+
+
+\begin{document}
+
+\section*{Micromotion compensation}
+
+Context: linear Paul trap, ytterbium. 
+
+\begin{itemize}
+\item Is micromotion compensation pretty general or does it vary a lot on trap geometry or ion type? E.g., for Yb, our driving frequency (14.6 MHz) is pretty close to our cooling transition linewidth, so which different micromotion techniques are more applicable or easier for us? 
+\item The $P_{1/2}$ linewidth $\gamma = 1/2 \pi \tau$, where $\tau$ is the lifetime of the $P_{1/2}$ level and was measured by Olmschenk to be 8.12 ns. Thus $\gamma = 19.6$ MHz.
+\item ...what is the typical unit of natural/atomic lifetimes, radians per second or Hertz?
+\item Wineland 1990, referenced in Berkeland 1998: ``the magnitude of the fractional second-order Doppler (time dilation) shift of transition frequencies can be as low as $2 \times 10^{-18}$". What is the fractional second-order Doppler shift? ...
+\item ...In any case, due to ion micromotion (as a result of the ac field), the above shift can be many orders of magnitude larger if the average ion position isn't at the ac null.
+\end{itemize}
+
+
+\subsection*{What micromotion is and why it's there}
+
+Following Section II of Berkeland 1998:
+
+\begin{itemize}
+\item We apply an ac field to trap our ions in x and y (the electrodes), and a dc field to confine our ions along z (the endcaps).
+\item You can calculate the equation of motion of an ion in such a field (the Mathieu equation).
+\item Solving the Mathieu equation gives you an expression for an ion's displacement from the trap centre over time. You can separate it into two motions, the \textbf{secular motion} and the \textbf{micromotion}, see equation 8 in Berkeland 1998. 
+\item Secular motion is ``typically thermal and incoherent motion" and can be reduced by cooling. This also reduces the amplitude of the micromotion.
+\item Micromotion is ``the unavoidable micromotion that occurs when the secular motion carries the ion back and forth through the nodal line of the ac field". So... if zero kinetic energy was possible, the ion could sit exactly at the ac null and it would feel zero force, therefore it would have zero motion. But an ion \textit{always} has a finite temperature, therefore \textit{will} make excursions from the ac null, so will feel the ac fields, resulting in (inevitable) micromotion.
+\item The Doppler-cooling limit of the ion temperature \textit{due to secular motion} is the usual Doppler-cooling limit, $T_D = \hbar \gamma / 2 k_B \approx 0.5$ mK for our cooling transition.
+\item The above assumes that the dc null and the ac null overlap in space, which is only true for a perfect trap. For an imperfect trap, a difference would result in an extra static electric field felt by the ions (...right?).
+\item \textbf{In addition to the trapping fields}, let's say the ion feels another (uniform, static) electric field $\mathbf{E_{dc}}$. This results in a displacement of the average ion position from the ac null to some position $\mathbf{u}_0$. This displacement does not affect the amplitude of the secular motion (and therefore the same can be said for the micromotion amplitude).
+\item However, the ac electric field at $\mathbf{u}_0$ causes additional motion. This is termed \textbf{excess micromotion}. 
+\end{itemize}
+
+Basically, anything that results in the average ion position not being at the ac null will cause what we dub ``excess micromotion". Such things include:
+
+\begin{itemize}
+\item Stray (DC) electric fields often push the ion away from the trap null. This results in the to-and-fro wobble of the micromotion occuring on an `orbit' around the rf null.
+\item Due to imperfect trap configuration, the trap null may not exactly coincide with the DC null (the DC inwards push from each of the electrodes). This would basically be adding an extra DC field on top.
+\item Other effects like phase difference in electrode voltages. How would that manifest in the motion and how would we observe it?  
+\end{itemize}
+
+\vspace{0mm}
+\begin{center}
+\begin{tabular}{l l l l} \toprule
+& \textbf{Secular motion} & \textbf{Micromotion} & \textbf{Excess micromotion} \\ \midrule
+\textbf{Cause} & applied ac and dc fields & applied ac and dc fields & e.g., stray dc field \\
+\textbf{Frequency} & secular frequencies, & rf/drive/trap frequency, & ? \\
+ & $\omega_{r, z} = \beta_{r,z} \, \omega /2$ *&  $\omega = 2 \pi \cdot 14.5$ MHz & ? \\
+\textbf{Removable?} & yes, by cooling & nope & yep, by putting ion to ac null \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+
+* where $\beta_{r,z}$ depends on $a$ and $q$... which depend on $U$ and $V$ (magnitude of the AC and DC applied field components, as well as...
+
+
+\vspace{5mm} \noindent Facts to find:
+
+\begin{itemize}
+\item Expression for how much an ion moves related to its temperature? Berkeland 1998 for some examples.
+\end{itemize}
+
+
+\subsection*{How we observe and minimise micromotion: Doppler velocimetry}
+
+We look at the photon scattering rate of 369 nm light (S$_{1/2}$ to P$_{1/2}$, cooling transition). The linewidth of the transition is approximately 20 MHz.  
+
+Consider micromotion in a single direction. The displacement of the ion is (approximately?) sinusoidal over time, therefore the velocity is also sinusoidal. As the velocity of the ion changes, the ion will ``see" the 369 nm laser shift in frequency due to the Doppler effect. For typical ion speeds of X (corresponding to excursions of Y), the Doppler shift of the 369 nm beam is Z. (Compare this to the linewidth.) (What is the relationship between detuning and scattering rate?) So the scattering rate of photons will vary sinusoidally as the beam shifts on and off resonance, due to the motion of the ion.
+
+\begin{itemize}
+\item Typical scattering rates are... X photons per second (ion saturation is an intensity and beam size of Y for 369 nm), and taking into account our solid angle of collection, we expect Z photons to be collected by our PMT per second.
+\item Maximum scattering rate of an ion is at $\gamma /2$ (red-detuned), because...
+\end{itemize}
+
+\vspace{0mm}
+\begin{center}
+\begin{tabular}{l l l} \toprule
+& \textbf{Yb 171} & \textbf{Yb 174} \\ \midrule
+$S_{1/2} \leftrightarrow P_{1/2}$ & 369.5261 nm & 369.5250 nm \\
+ & 739.05220 nm & 739.0500 nm \\  
+\bottomrule
+\end{tabular}
+\end{center}
+
+Once micromotion has been observed (i.e., an oscillation in the photon scattering rate has been observed on our PMT), we can go about compensation.
+
+% Include some data! Our observed micromotion. Label background and how to calculate contrast.
+
+Stuff not to forget:
+
+\begin{itemize}
+\item To compensate along each axis, you need a beam with a component along that axis.
+\item If you over-compensate, the phase of the emitted light will flip by 180$^{\circ}$... I think. I.e., the ion is on the ``other side" of the saddle point, so at the same phase of the applied drive field, the ion is now rolling towards the rf null instead of away from it.
+\item If you're trapping an ion with multiple 369 beams in different directions, you'll see micromotion along all the directions that the beams have components. These may cancel each other out, which is more obvious if the above statement is true (that you get a phase flip if you over-compensate).
+\end{itemize}
+
+
+\subsection*{Other methods of micromotion compensation}
+
+For situations where your linewidth is much smaller or much greater than your trap frequency... Etc.
+
+
+\end{document}
