@@ -1,9 +1,0 @@
-Abstract for IONS
-
-Quantum computers could be useful for "quantum simulation", whereby a quantum system (such as a string of ions) and its dynamics can be used to simulate a system of interest.
-
-Such a simulation would be limited by "measurement back-action" which is ubiquitous in quantum systems: if you make a measurement of the state of an ion in a superposition, the ion is measured to be in a particular state, and its dynamics are completely changed by the act of measurement. 
-
-We observe Rabi oscillations (on?) a cloud of Ytterbium ions held in a linear Paul ion trap. 
-
-Precise preparation, manipulation and detection of qubit states is crucial in quantum computing and quantum simulation. In this work we trap and cool a cloud of Ytterbium 171 ions in a linear Paul trap, using a combination of dynamic and static electric fields to confine the ions. State preparation and detection is achieved using lasers, and state manipulation is achieved with the application of microwaves to drive Rabi oscillations. The ions are driven between the two qubit states which are directly analogous to the values 0 and 1 in classical computing. Further work will be to demonstrate entanglement, with the end goal of applying such techniques to weak measurements (i.e., measurements that disturb the state of a system very little) and quantum feedback control.
