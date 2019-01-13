@@ -1,0 +1,41 @@
+% -------------------------- create/choose folder
+
+- in terminal: go to folder
+> cd Desktop\Nancy\PhD
+
+- initialise Git repo
+> git init
+
+- tell Git where the remote repo is (i.e., on the internet) (if remote repo doesn't exist, you need to create it) by copying and pasting:
+> git remote add origin git@github.com:nancypayne/PhD.git
+
+
+%-------------------------- if you want to change stuff... change it (e.g., update file)
+
+- to update to origin,
+> git add --all
+
+> git commit -m "message here"
+
+First time:
+> git push --set-upstream origin master
+
+Every other time:
+> git push origin 
+
+
+% ------------------------ to link up the contents of a folder in a new location
+
+- in terminal, go to folder
+> git init
+
+> git remote add origin git@github.com:nancypayne/repo_name.git
+
+> git pull origin master
+
+
+% ------------------------ to link up work computer (using Github Desktop)
+
+- below list of changes, add "summary" message and click "Commit to master"
+
+- Click "Push origin" to push changes to Github website

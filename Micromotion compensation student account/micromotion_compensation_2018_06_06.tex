@@ -1,0 +1,267 @@
+\documentclass{article}
+
+\usepackage{booktabs} % ................................. for pretty table
+\usepackage[a4paper, total={6in, 8in}]{geometry} % ...... for margins
+
+
+\begin{document}
+
+\section*{Micromotion compensation}
+
+Context: linear Paul trap, ytterbium. 
+
+References so far: Berkeland 1998, Gulde (thesis), Keller 2015, Pyka 2014 (experimental results of their compensation).
+
+\begin{itemize}
+\item Is micromotion compensation pretty general or does it vary a lot on trap geometry or ion type? E.g., for Yb, our driving frequency (14.6 MHz) is pretty close to our cooling transition linewidth, so which different micromotion techniques are more applicable or easier for us? 
+
+Berkeland 1998 addresses $\Omega \ll \gamma$ and $\Omega \gg \gamma$. Keller 2015 address $\Omega \approx \gamma$.
+
+\item The $P_{1/2}$ linewidth $\gamma = 1/2 \pi \tau$, where $\tau$ is the lifetime of the $P_{1/2}$ level and was measured by Olmschenk to be 8.12 ns. Thus $\gamma = 19.6$ MHz.
+
+\item ...what is the typical unit of natural/atomic lifetimes, radians per second or Hertz?
+\item Wineland 1990, referenced in Berkeland 1998: ``the magnitude of the fractional second-order Doppler (time dilation) shift of transition frequencies can be as low as $2 \times 10^{-18}$". What is the fractional second-order Doppler shift? The shift due to relativistic effects?
+
+\item ...In any case, due to ion micromotion (as a result of the ac field), the above shift can be many orders of magnitude larger if the average ion position isn't at the ac null.
+\end{itemize}
+
+
+\section{What micromotion is and why it's there}
+
+Following Section II of Berkeland 1998:
+
+\begin{itemize}
+\item We apply an ac field to trap our ions in x and y (the electrodes), and a dc field to confine our ions along z (the endcaps).
+
+\item You can calculate the equation of motion of an ion in such a field (the Mathieu equation).
+
+\item Solving the Mathieu equation gives you an expression for an ion's displacement from the trap centre over time. You can separate it into two motions, the \textbf{secular motion} and the (intrinsic) \textbf{micromotion}, see equation 8 in Berkeland 1998. 
+
+\item Secular motion at $\omega_i$ is an oscillation in the harmonic trapping potential ``typically thermal and incoherent motion" and can be reduced by cooling. This also reduces the amplitude of the micromotion.
+
+Secular motion occurs at $\omega_i = \Omega /2 sqrt{a_i + q_i^2 / 2}$, where $\Omega$ is the trap drive frequency. \textbf{Typical values of $\omega_i$ are...}
+
+\item (Intrinsic) micromotion is ``the unavoidable micromotion that occurs when the secular motion carries the ion back and forth through the nodal line of the ac field". So... if zero kinetic energy was possible, the ion could sit exactly at the ac null and it would feel zero force, therefore it would have zero motion. But an ion \textit{always} has a finite temperature, therefore \textit{will} make excursions from the ac null, so will feel the ac fields, resulting in (inevitable) micromotion.
+
+\item If you plot the motion of the ion due to only secular motion and micromotion along one direction, you get a sinusoid with a little ripple on top. Find pic, e.g., Olmschenk's thesis. \textbf{What does excess micromotion do to this picture? Can you reproduce the plot?}
+
+\item The Doppler-cooling limit of the ion temperature \textit{due to secular motion} is the usual Doppler-cooling limit, $T_D = \hbar \gamma / 2 k_B \approx 0.5$ mK for our cooling transition.
+
+\item The above assumes that the dc null and the ac null overlap in space, which is only true for a perfect trap. For an imperfect trap, a difference would result in an extra static electric field felt by the ions, which is likely the case in our trap. This is a fixed static field so once you've compensated for it, job done. However, other stray fields may vary day to day.
+
+\item \textbf{In addition to the trapping fields}, let's say the ion feels another (uniform, static) electric field $\mathbf{E_{dc}}$. This results in a displacement of the average ion position from the ac null to some position $\mathbf{u}_0$. This displacement does not affect the amplitude of the secular motion (and therefore the same can be said for the micromotion amplitude).
+
+\item However, the ac electric field at $\mathbf{u}_0$ causes additional motion. This is termed \textbf{excess micromotion}. Or in other words, excess micromotion occurs when there is a non-zero rf electric field at the trapping potential minimum (which is the time-averaged position of the ion). Or in \textit{other} words, excess micromotion occurs when the ion's time-averaged position \textit{isn't} the same as the rf null.
+\end{itemize}
+
+Basically, anything that results in the average ion position not being at the ac null will cause what we dub ``excess micromotion". 
+
+\vspace{0mm}
+\begin{center}
+\begin{tabular}{l l l l} \toprule
+& \textbf{Secular motion} & \textbf{Micromotion} & \textbf{Excess micromotion} \\ \midrule
+\textbf{Cause} & applied ac and dc fields & applied ac and dc fields & e.g., stray dc field \\
+\textbf{Frequency} & secular frequencies, & rf/drive frequency, & ? \\
+ & $\omega_{r, z} = \beta_{r,z} \, \omega /2$ *&  $\omega = 2 \pi \cdot 14.5$ MHz & ? \\
+\textbf{Removable?} & somewhat, by cooling & nope & yep, by putting ion to ac null \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+
+* where $\beta_{r,z}$ depends on $a$ and $q$... which depend on $U$ and $V$ (magnitude of the AC and DC applied field components, as well as...
+
+
+\vspace{5mm} \noindent Facts to find:
+
+\begin{itemize}
+\item Expression for how much an ion moves related to its temperature? Berkeland 1998 for some examples.
+\item Reproduce plot of Olmschenk's micromotion. Add excess micromotion.
+\end{itemize}
+
+
+\section{How we observe and minimise micromotion: Doppler velocimetry}
+
+We use a specific technique, Doppler velocimetry of the ions \textbf{(is this the same as ``correlation compensation"?)} look at the photon scattering rate of 369 nm light (S$_{1/2}$ to P$_{1/2}$, cooling transition). The linewidth of the transition is approximately 20 MHz.  
+
+Consider micromotion in a single direction. The displacement of the ion is (approximately?) sinusoidal over time, therefore the velocity is also sinusoidal. As the velocity of the ion changes, the ion will ``see" the 369 nm laser shift in frequency due to the Doppler effect. For typical ion speeds of X (corresponding to excursions of Y), the Doppler shift of the 369 nm beam is Z. (Compare this to the linewidth.) (What is the relationship between detuning and scattering rate?) So the scattering rate of photons will vary sinusoidally as the beam shifts on and off resonance, due to the motion of the ion.
+
+\begin{itemize}
+\item Typical scattering rates are... X photons per second (ion saturation is an intensity and beam size of Y for 369 nm), and taking into account our solid angle of collection, we expect Z photons to be collected by our PMT per second. (Gulde 2003 scattering rate is 60 MHz and approx 1 in 2000 photons are collected/detected.)
+\item Maximum scattering rate of an ion is at $\gamma /2$ (red-detuned), because...
+\item Keller 2005: ``it is also apparent [for the case that $\gamma \approx \Omega_{\mathrm{rf}}$] that the highest sensitivity is no longer attained at a detuning of $-\gamma/2$ but rather close to $-\Omega_{\mathrm{rf}}$"
+\end{itemize}
+
+\vspace{0mm}
+\begin{center}
+\begin{tabular}{l l l} \toprule
+& \textbf{Yb 171} & \textbf{Yb 174} \\ \midrule
+$S_{1/2} \leftrightarrow P_{1/2}$ & 369.5261 nm & 369.5250 nm \\
+ & 739.05220 nm & 739.0500 nm \\  
+\bottomrule
+\end{tabular}
+\end{center}
+
+Once micromotion has been observed (i.e., an oscillation in the photon scattering rate has been observed on our PMT), we can go about compensation. (The below assumes the phase difference between electrodes is zero.)
+
+Berkeland 1998 approach:
+
+\begin{enumerate}
+\item Measure the fluorescence modulation due to beams 1, 2 and 3 separately.
+\item Adjust the static fields to minimise the fluorescence modulation for each beam. E.g., start with small window beam(?), as it only sees micromotion along $\hat{x}$ which corresponds to a stray field pushing the ion along... think about it. In general, the effect of a vertical stray field component can be observed with a horizontal laser beam, and corrected by the vertical compensation electrode. So I'm pretty sure you can be systematic.
+\item Iterate between the three beams. One of our beams is only along $\hat{x}$, one is along $\hat{x}$ and $\hat{z}$, and the third is along $\hat{y}$ and $\hat{z}$. 
+\item The data we're aiming for is a plot for each beam, of how ion position affects the contrast. \textbf{E.g., add figure...}. I guess we'd iteratively find an optimal position using all three beams, then from there, push the ion to and fro, measuring the contrast at several positions, and then plotting. What could we learn from this? (Plotting phase will confirm that we have no phase difference, if the phase swaps within our resolution.)
+\end{enumerate}
+
+However, Berkeland 1998  addresses $\Omega \ll \gamma$ and $\Omega \gg \gamma$. Keller 2015 addresses $\Omega \approx \gamma$: e.g., the $S \leftrightarrow P$ transitions in alkali-like ions have linewidths close to typical drive frequencies of 10s of MHz. The result that Keller 2015 arrives at for the detected fluorescence agrees with Berkeland in the appropriate limit, there's a ``significant deviation" as the frequencies get closer in scale, because the effect of ``the phase difference in the atomic response to carrier and sidebands cannot be neglected", and \textbf{``it is also apparent that the highest sensitivity is no longer attained at a detuning of $-\gamma/2$ but rather close to $-\Omega_{\mathrm{rf}}$".} (How big is this difference? How stable does our laser need to be for this to not influence our measurements?)
+
+Also... ``note that the clear maximum at a known detuning provides a simple way to experimentally determine the resonance frequency". And this will depend on intensity if you're near saturation, so be careful. Check out Figure 12 of Keller 2015, which shows the frequency dependence of $\Delta S / S_0$ (the contrast) for a fixed amount of excess micromotion, at various laser intensities.
+
+\textbf{Include some data! Our observed micromotion. Label background, contrast, etc.}
+
+
+\section{Other methods of micromotion detection and compensation}
+
+For situations where your linewidth is much smaller or much greater than your trap frequency... Etc. Certain techniques will detect excess micromotion due to a uniform static field pushing the ion to some time-averaged position \textbf{u}$_0 \neq 0$, and others will be able to detect excess micromotion due to a phase difference $\phi_{ac}$ between the trap electrodes. 
+
+From Gulde 2003 (thesis), with some extra notes from Berkeland 1998, here are four methods of micromotion compensation, in order of increasing sensitivity:
+
+\begin{enumerate}
+\item \textbf{Position compensation} (sensitive to static DC fields): view (time-averaged) ion position on camera while varying the strength of the rf potential. If there are stray dc fields and the ion is not at the ac null, decreasing the trap strength results in a displacement of the ion. Compensation electrodes are then used to push the ion back to its previous position when the rf strength was highest. Notes: you're limited by the resolution of your optics and you're viewing the displacement in one plane. To get information out of the plane (our $y$), you can see how much you need to change the focus to maintain maximum photon scattering. 
+
+Section IV of Berkeland 1998: ``this technique can also be used by modulating the pseudopotential (by modulating $V_0$ (amplitude of ac) by some frequency $\omega_{mod} \ll \Omega$) while the ion is located in the waist of a beam tuned to a cycling transition (e.g., the Doppler-cooling transition)." As $V_0$ changes, the amplitude of excess micromotion changes... and in the low intensity limit, if you know the detected fluorescence signal from the ion, you can work out your displacement due to stray fields ($u_{0i}$, where $i = x, y$).
+
+If \textbf{u}$_0 = 0$ but $\phi_{ac} \neq 0$, raising and lowering the trap strength will not result in a time-averaged displacement of the ion.
+
+\textbf{Draw sketch of different rf strengths to demonstrate. E.g., Fig 1 in Gloger 2011.}
+
+\item \textbf{Linewidth compensation:} the width of the $S_{1/2} \leftrightarrow P_{1/2}$ transition is broadened by micromotion sidebands (\textbf{what does that mean?}). To compensate, tune the laser to the red side of the resonance fringe (``by slightly more than half a linewidth")... and optimise the compensation voltages for \textit{minimal} fluorescence. I.e., the compensation voltages make the linewidth more narrow. 
+
+Note: for this, make sure your (369) laser isn't saturated or you'll get a lot of power broadening. 
+
+\textbf{This technique might not be suitable for us, compare our linewidth to Gulde's calcium.}
+
+\item \textbf{Correlation compensation/cross-correlation technique} (sensitive to both stray fields and a phase difference $\phi_{ac}$, for situations where $\Omega \ll \gamma$): looking at the photon scattering rate, which is modulated by the drive frequency (what we do). It's called the correlation technique because the modulation of the scattering rate is correlated to the ac potential. Take $\omega_{laser} - \omega_{atom} = \gamma /2$ (minimises temperature of Doppler-cooled ions and maximises cross-correlation signal... because on steepest part of linewidth), then you can relate $R_d / R_{max}$ to the fractional second-order Doppler shift $\Delta \nu_{D2} / \nu$ and the Stark shift $\Delta \nu_S$... where $R_d$ is the detected fluorescence signal, and $R_{max}$ is the signal when the ion is at the centre of the laser beam profile.
+
+Note: as we found out, the ion velocity is 90$^{\circ}$ out of phase with the force due to the applied ac field, so the phase of the cross-correlation signal jumps by 180$^{\circ}$ as the average ion position crosses the ac null. However, if $\phi_{ac} \neq 0$, the phase of the micromotion along $x$ (or $y$?) continuously varies as the average ion position moves. You can use this info to work out whether the main contributions are stray static fields or a phase difference.
+
+We again need to avoid saturation broadening. 
+
+\item \textbf{Micromotion sideband reduction:} use the $S_{1/2} \leftrightarrow D_{5/2}$ transition (Ca, 729 nm) to resolve motional sidebands... ``including micromotion sidebands at a frequency $\Omega$ (rf frequency) away from the carrier. Minimise the sidebands by tuning the compensation voltages.
+
+\item \textbf{Something else with sidebands... which of the above is it the same as? (this is from Berkeland, the above are from Gulde, it's sensitive to both stray fields and a phase difference $\phi_{ac}$, for situations where $\Omega \ll \gamma$)}. Basically, monitor the micromotion by measuring scattering rate $R_0$ when laser is tuned to carrier ($\omega_{laser} - \omega_{atom} = 0$), and $R_1$ when tuned to the first sideband ($\omega_{laser} - \omega_{atom} = \pm \Omega$). The ratio of $R_1/R_0$ can be related to the fractional second-order Doppler shift $\Delta \nu_{D2} / \nu$ and the Stark shift $\Delta \nu_S$.
+
+\item \textbf{Parametric excitation} (not sensitive to phase shift, read more in Keller 2015): doesn't measure micromotion directly but rather detects a displacement $u_{0,i}$ from the ponderomotive (harmonic?) potential. If you apply a modulation of the rf voltage at $2 \omega_{\mathrm{sec}}/n$ (...is $\omega_{\mathrm{sec}}$ the same as $\omega_i$?), the secular motion is excited parametrically (what does that mean?) at a rate proportional to the displacement.
+\end{enumerate}
+
+\begin{itemize}
+\item What is saturation intensity for our 369 nm?
+\end{itemize}
+
+
+\section{Effects of excess micromotion}
+
+The first-order Doppler shift due to excess micromotion affects your excitation spectrum, even such that a laser frequency that was previously cooling is now heating the ions.
+
+\subsection*{Excess micromotion affects cooling}
+
+Basically, excess micromotion makes cooling more difficult.
+
+\begin{itemize}
+\item \textbf{rf drive/linewidth = 0.1 ($\Omega \ll \gamma$):} more micromotion (larger $\beta$ in the figure) results in a broadening of the transition, which in turn decreases the rate at which a laser can cool the ion. If the micromotion is large enough, heating can occur where you'd otherwise expect cooling (which is seen in the figure as a positive gradient?). 
+
+\item \textbf{Where would sidebands be in this case...?} $\pm \Omega$?
+
+\item \textbf{rf drive/linedwith = 10 ($\Omega \gg \gamma$):} as micromotion ($\beta$) increases, sidebands develop at at multiples of $\pm n\Omega$, and decrease the strength of the carrier transition. Heating will occur close to and above the centre frequency of a sideband.
+\end{itemize}
+
+
+\subsection*{Ion motion produces a second-order Doppler shift of the transition frequencies}
+
+Excess micromotion also produces a second-order Doppler shift of atomic transition frequencies (Berkeland equation 29):
+%
+\begin{equation}
+\Delta \nu_{D2} = - \frac{E_K}{mc^2} \nu = -\frac{1}{2} \frac{\langle V^2 \rangle}{\langle c^2 \rangle} \nu,
+\end{equation}
+%
+where $\nu$ is the atomic transition frequency and $V$ is ion velocity.
+
+Contributions to fractional second-order Doppler shift $\Delta \nu_{D2} / \nu$ for $^{199}$Hg$^+$ ion (what is $\Omega/\gamma$?): 
+
+\begin{itemize}
+\item $\mathbf{E}_{dc} = 0, \phi_{ac} = 0, T_x = 1.7$ mK contributes $-8 \times 10^{-19}$.
+\item Adding $\phi_{ac} = 1^{\circ}$ contributes $-9 \times 10^{-15}$.
+\item Adding $\mathbf{E}_{dc} = 1$ Vmm$^{-1}$ along \textbf{x} contributes a further $3 \times 10^{-14}$.
+\end{itemize}
+
+
+\subsection*{The ac field causing micromotion causes ac Stark shifts}
+
+Note: this is the ac (not dc) field, causing \textit{micromotion}, not excess micromotion. The Stark shift due to the field the ion feels is approximately (Berkeland equation 31):
+%
+\begin{equation}
+\Delta \nu_S \approx \sigma_S \langle E(\mathbf{u}, t)^2 \rangle, 
+\end{equation}
+%
+where $\sigma_S$ is the static Stark shift constant \textbf{(what's that?)} and $\langle E(\mathbf{u}, t)^2 \rangle$ is the time-averaged square of the field at the ion position. Berkeland gives an expression for $\langle E(\mathbf{u}, t)^2 \rangle$ and one of the terms goes like the square of $\mathbf{E}_{dc} \cdot \hat{u}_i / (2a_i + q^2_i)$. Typically $|a_i| \ll q^2_i \ll 1$, so a small uniform static field can cause a large Stark shift.
+
+For $^{138}$Ba$^+$ $\Delta \nu_S$ (what is $\Omega/\gamma$?), the fractional Stark shift:
+
+\begin{itemize}
+\item in the absence of uniform static electric fields: calculated to be 10$^{-17}$
+\item with a 5 mV potential across the 0.3 mm trap diameter: predicted to cause shift of $+ 1.2 \times 10^{-15}$.
+\end{itemize} 
+
+For $^{199}$Hg$^+$ ($\mathbf{E}_{dc} = 0, \phi_{ac} = 0$, cooled to Doppler limit in $x$), the Stark shift was estimated to be:
+
+\begin{itemize}
+\item Due to electric field in $x$: $\leq 1.1 \times 10^{-18}$.
+\item With 1 V mm$^{-1}$ static field along $x$: $\leq 9 \times 10^{-14}$.
+\item If $\phi_{ac} = 1^{\circ}$: magnitude of shift increases by about $3 \times 10^{-14}$.
+\end{itemize}
+
+So you can try and get the second-order Doppler shifts and the ac Stark shifts caused by excess micromotion to cancel (within sensible experimental conditions, potentially).
+
+
+\subsection*{Excess micromotion can increase secular motion of multiple ions}
+
+For a single ion, the micromotion and secular motion are ``highly decoupled", so excess micromotion generally won't have an effect on the secular motion. However, if you've got multiple ions (i.e., none of them are sitting at the ac null), the energy due to excess micromotion \textit{can} couple to the energy of the secular motion. As micromotion is driven motion, this results in continuous heating of the ions and the lowest attainable temperature is limited.
+
+
+
+\newpage
+
+\section{Stuff to not forget}
+
+\begin{itemize}
+\item Berkeland 1998 data is from a chain of 8 to 10 ions! 
+
+\item Berkeland 1998  addresses $\Omega \ll \gamma$ and $\Omega \gg \gamma$. Keller 2015 address $\Omega \approx \gamma$. What are the main differences?
+
+\item Don't saturate ions! (i.e., avoid power broadening). Keller 2015 compromised between avoiding saturation and SNR by using an intensity $I = 0.4 \times I_{\mathrm{sat}}$, and have a first-order approximation for the uncertainty this results in.
+
+\item \textbf{Try relaxing trap to increase micromotion amplitude.}
+
+\item Keller 2015: ``it is also apparent that the highest sensitivity is no longer attained at a detuning of $-\gamma/2$ but rather close to $-\Omega_{\mathrm{rf}}$. 
+
+\item What's the size of our laser beam compared to the ion excursions? Just moving across the beam will affect the fluorescence. \textbf{To see if this is visible in our data:} the phase of this fluorescence modulation is sensitive to lateral translations of the laser beam (the same is not true for fluorescence modulation due to first-order Doppler shifts).
+
+\item Make sure the laser frequency isn't too close to resonance or the modulation due to the first-order Doppler shift can be very small.\textbf{ To test, detune laser frequency further from resonance} and see if the modulation of the fluorescence increases.
+
+\item To compensate along each axis, you need a beam with a component along that axis. Well... to view motion along each axis, you need a beam with a component. As per discussion below, the direction of the stray field is not the same as the direction of the micromotion it results in.
+
+\item If you're trapping an ion with multiple 369 beams in different directions, you'll see micromotion along all the directions that the beams have components. These may cancel each other out: if motion along two directions is of the same magnitude but out of phase, they'll exactly cancel. To check this, see if you still get micromotion if you only cool with one beam (so you'll need to be able to hold the ions with only one beam...), check the phases.
+
+\item If you have a stray radial field pointing in some direction $\mathbf{e}_s$ will in general cause micromotion in a different direction $\mathbf{e}_m$. E.g., if a stray field pushes an ion along the $x$ axis, it'll undergo micromotion along the $y$ axis \textbf{(get a contour plot to demonstrate this, or figure in Gulde 2003.} So pushing the ion along $x$ will result in motion that is more easily seen by a laser beam propagating along $y$. In general, the effect of a vertical stray field component can be observed with a horizontal laser beam, and corrected by the vertical compensation electrode.
+
+\item You can increase the micromotion amplitude (to make it easier to see? larger signal on top of background?) by decreasing the trap strength/rf drive power.
+
+\item Keller 2015 Appendix B1: RF pickup and isolating/eliminating the effect in data processing by running a measurement with only stray light. Or at least we should get an estimate of its magnitude, which we now believe to be pretty small. Also, rf pickup might shift the observed position of minimum micromotion (see Figure 11).
+
+\item Collect all the equations so you know what data you need in order to calculate the shifts due to second-order Doppler and Stark effect (remember, Keller's are more applicable).
+
+\item Has anyone else used an FPGA for the photon counting?
+\end{itemize}
+
+\end{document}
